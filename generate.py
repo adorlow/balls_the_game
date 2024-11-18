@@ -1,4 +1,3 @@
-# very much based on : Trevor Payne https://www.youtube.com/watch?v=fInYh90YMJU&noredirect=1
 from sys import maxsize
 import numpy as np
 import pickle
