@@ -197,7 +197,13 @@ def genList2(n):
     print(diff)
     return(list4)
 if __name__ == '__main__':
-    n=4
+    n=3
+    set3 = genList2(n)
+    list3 = list(set3)
+    print('list of all lost boards 3x3')
+    for l in list3:
+        drawBoard(l)
+        print('------------')
     '''
     #dict4 = set()
     dict4 = allboards(n)
