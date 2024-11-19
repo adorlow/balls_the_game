@@ -202,7 +202,7 @@ if __name__ == '__main__':
     list3 = list(set3)
     print('list of all lost boards 3x3')
     for l in list3:
-        drawBoard(l)
+        drawBoard(numboard(l))
         print('------------')
     '''
     #dict4 = set()
