@@ -2,10 +2,10 @@ from itertools import combinations
 from spider import *
 
 def createboard(n):
-    return np.ones((n, n), dtype=bool)
+    return np.ones((n, n), dtype=np.bool_)
 
 def number_to_array(number, n):
-    return np.array([*str(bin(number))[2:].rjust(n*n, "0")]).astype(bool).reshape(n,n)
+    return np.array([*str(bin(number))[2:].rjust(n*n, "0")]).astype(np.bool_)
 
 def k_balls_combinations(k, n):
     return set(np.sum(np.array(list(combinations(2**np.arange(n*n), k))), axis=1))
@@ -13,8 +13,8 @@ def k_balls_combinations(k, n):
 def iswin(board, lost_boards, n, kernels):
     board = number_to_array(board, n)
     # kernels application
-    moved_boards = set(np.sum(np.logical_and(kernels, board) * 2 ** np.arange(0, n**2).reshape(n,n), axis=(1,2)))
-    moved_boards.discard(np.sum(board * 2 ** np.arange(0, n**2).reshape(n,n)))
+    moved_boards = set(np.sum(np.logical_and(kernels, board) * 2 ** np.arange(0, n**2), axis=1))
+    moved_boards.discard(np.sum(board * 2 ** np.arange(0, n**2)))
     
     for b in moved_boards:
         if b in lost_boards:
@@ -24,7 +24,7 @@ def iswin(board, lost_boards, n, kernels):
 def genList(n):
     lost_boards = k_balls_combinations(1, n)
     board = createboard(n=n)
-    kernels = np.array(spider(board))
+    kernels = np.bool_(spider_flat(board))
     
     for k in range(3, n**2+1):
         cmbs = k_balls_combinations(k, n)
